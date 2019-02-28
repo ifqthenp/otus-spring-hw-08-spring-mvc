@@ -269,6 +269,30 @@ class BookRepositorySpec extends Specification {
         println(genreRepo.findAll())
     }
 
+    @DirtiesContext
+    def "removing genre from the book does not remove it from database"() {
+        given:
+        def bookId = 4L
+        def book = bookRepo.findById(bookId).get()
+        def genreId = 5L
+        def genreToRemove = genreRepo.findById(genreId).get()
+
+        and:
+        def genresInBook = book.genres
+        def genresInDatabase = genreRepo.findAll()
+
+        when:
+        book.removeGenre(genreToRemove)
+
+        and:
+        genresInBook == book.genres
+        genresInDatabase = genreRepo.findAll()
+
+        then:
+        book.genres.size() == old(book.genres.size()) - 1
+        genresInDatabase.size() == old(genresInDatabase.size())
+    }
+
     void cleanup() {
         bookRepo = null
         genreRepo = null

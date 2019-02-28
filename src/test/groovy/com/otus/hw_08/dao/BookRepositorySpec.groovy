@@ -237,6 +237,38 @@ class BookRepositorySpec extends Specification {
         book.genres.last().genreName == 'Novel'
     }
 
+    @DirtiesContext
+    def "can add a new genre to a database by adding it to the book"() {
+        given:
+        def bookId = 1L
+        def book = bookRepo.findById(bookId).get()
+
+        and:
+        def horror = 'Horror'
+        def genre = new Genre(genreName: horror)
+
+        and:
+        def genresInBook = book.genres.size()
+        def genresInDatabase = genreRepo.findAll().size()
+
+        when:
+        book.addGenre(genre)
+
+        and:
+        genresInBook = book.genres.size()
+        genresInDatabase = genreRepo.findAll().size()
+
+        then:
+        genresInBook == old(genresInBook) + 1
+        book.genres.last().genreName == horror
+
+        and:
+        genresInDatabase == old(genresInDatabase) + 1
+        genreRepo.findAll().last().genreName == horror
+
+        println(genreRepo.findAll())
+    }
+
     void cleanup() {
         bookRepo = null
         genreRepo = null

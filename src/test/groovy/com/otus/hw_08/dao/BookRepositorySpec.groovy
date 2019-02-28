@@ -2,6 +2,7 @@ package com.otus.hw_08.dao
 
 import com.otus.hw_08.domain.Book
 import com.otus.hw_08.domain.Comment
+import com.otus.hw_08.domain.Genre
 import com.otus.hw_08.repository.AuthorRepository
 import com.otus.hw_08.repository.BookRepository
 import com.otus.hw_08.repository.CommentRepository
@@ -215,6 +216,25 @@ class BookRepositorySpec extends Specification {
         then:
         aBook.comments.size() == old(aBook.comments.size()) - 1
         allCommentsInDatabase.size() == old(allCommentsInDatabase.size()) - 1
+    }
+
+    @DirtiesContext
+    def "can add a genre to the book"() {
+        given:
+        def bookId = 1L
+        def book = bookRepo.findById(bookId).get()
+        def genre = genreRepo.findById(4L).get()
+        def genresInBook = book.genres.size()
+
+        when:
+        book.addGenre(genre)
+
+        and:
+        genresInBook = book.genres.size()
+
+        then:
+        genresInBook == old(genresInBook) + 1
+        book.genres.last().genreName == 'Novel'
     }
 
     void cleanup() {

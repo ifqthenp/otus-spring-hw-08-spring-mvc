@@ -1,5 +1,6 @@
 package com.otus.hw_08.dao
 
+import com.otus.hw_08.domain.Author
 import com.otus.hw_08.domain.Book
 import com.otus.hw_08.domain.Comment
 import com.otus.hw_08.domain.Genre
@@ -291,6 +292,32 @@ class BookRepositorySpec extends Specification {
         then:
         book.genres.size() == old(book.genres.size()) - 1
         genresInDatabase.size() == old(genresInDatabase.size())
+    }
+
+    @DirtiesContext
+    def "adding new author to the book will add it to the database"() {
+        given:
+        def bookId = 1L
+        def book = bookRepo.findById(bookId).get()
+
+        and:
+        def author = new Author(firstName: 'John', lastName: 'Doe')
+
+        and:
+        def authorsInBook = book.authors
+        def authorsInDatabase = authorRepo.findAll()
+
+        when:
+        book.addAuthor(author)
+
+        and:
+        authorsInBook = book.authors
+        authorsInDatabase = authorRepo.findAll()
+
+        then:
+        authorsInBook.size() == old(authorsInBook.size()) + 1
+        authorsInDatabase.size() == old(authorsInDatabase.size()) + 1
+        book.authors.any() { it =~ /Doe/ }
     }
 
     void cleanup() {

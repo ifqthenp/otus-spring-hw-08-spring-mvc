@@ -266,8 +266,6 @@ class BookRepositorySpec extends Specification {
         and:
         genresInDatabase == old(genresInDatabase) + 1
         genreRepo.findAll().last().genreName == horror
-
-        println(genreRepo.findAll())
     }
 
     @DirtiesContext
@@ -318,6 +316,32 @@ class BookRepositorySpec extends Specification {
         authorsInBook.size() == old(authorsInBook.size()) + 1
         authorsInDatabase.size() == old(authorsInDatabase.size()) + 1
         book.authors.any() { it =~ /Doe/ }
+    }
+
+    @DirtiesContext
+    def "removing author from the book will not remove it from the database"() {
+        given:
+        def authorId = 3L
+        def author = authorRepo.findById(authorId).get()
+
+        and:
+        def bookId = 3L
+        def book = bookRepo.findById(bookId).get()
+
+        and:
+        def authorsInBook = book.authors
+        def authorsInDatabase = authorRepo.findAll()
+
+        when:
+        book.removeAuthor(author)
+
+        and:
+        authorsInBook = book.authors
+        authorsInDatabase = authorRepo.findAll()
+
+        then:
+        authorsInBook.size() == 0
+        authorsInDatabase.size() == old(authorsInDatabase.size())
     }
 
     void cleanup() {

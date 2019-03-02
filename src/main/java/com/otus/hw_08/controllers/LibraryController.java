@@ -11,7 +11,7 @@ public class LibraryController {
         return "add_book";
     }
 
-    @GetMapping("/library/find")
+    @GetMapping("/library/books/search")
     public String find() {
         return "find_book";
     }

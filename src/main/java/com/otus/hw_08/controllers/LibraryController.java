@@ -29,7 +29,7 @@ public class LibraryController {
     }
 
     @GetMapping(value = "/library/books/search/full")
-    public String resultBook(final Model model,
+    public String fullSearch(final Model model,
                              @RequestParam(required = false) final String title,
                              @RequestParam(required = false) final String author,
                              @RequestParam(required = false) final String genre) {

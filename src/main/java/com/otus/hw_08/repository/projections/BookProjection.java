@@ -7,7 +7,7 @@ import org.springframework.ui.Model;
  * This projection of book is to be used in search result
  * initiated by user in book search form.
  *
- * @see LibraryController#resultBook(Model, String, String, String)
+ * @see LibraryController#fullSearch(Model, String, String, String)
  */
 public interface BookProjection {
 

@@ -19,7 +19,7 @@ public class LibraryController {
     private final BookService bookService;
 
     @GetMapping("/library/add")
-    public String add() {
+    public String bookAdd() {
         return "book_add_new";
     }
 

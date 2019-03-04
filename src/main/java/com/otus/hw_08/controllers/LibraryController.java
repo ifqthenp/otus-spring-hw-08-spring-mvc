@@ -28,7 +28,7 @@ public class LibraryController {
         return "find_book";
     }
 
-    @GetMapping(value = "/library/books/search/results")
+    @GetMapping(value = "/library/books/search/full")
     public String resultBook(final Model model,
                              @RequestParam(required = false) final String title,
                              @RequestParam(required = false) final String author,

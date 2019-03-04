@@ -41,6 +41,15 @@ public class LibraryController {
         return "result_book";
     }
 
+    @GetMapping(value = "/library/books/search/quick")
+    public String quickSearch(@RequestParam(required = false) String title, final Model model) {
+        if (!title.isBlank()) {
+            List<BookProjection> books = libraryService.findBooksByRequestParams(title, "", "");
+            model.addAttribute("books", books);
+        }
+        return "result_book";
+    }
+
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {
         return !title.isBlank() || !author.isBlank() || !genre.isBlank();
     }

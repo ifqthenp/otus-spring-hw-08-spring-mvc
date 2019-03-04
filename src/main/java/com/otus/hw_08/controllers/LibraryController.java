@@ -1,7 +1,7 @@
 package com.otus.hw_08.controllers;
 
 import com.otus.hw_08.repository.projections.BookProjection;
-import com.otus.hw_08.services.LibraryService;
+import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
@@ -16,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class LibraryController {
 
-    private final LibraryService libraryService;
+    private final BookService bookService;
 
     @GetMapping("/library/add")
     public String add() {
@@ -35,7 +35,7 @@ public class LibraryController {
                              @RequestParam(required = false) final String genre) {
 
         if (allParamsNotNull(title, author, genre) && allParamsNotBlank(title, author, genre)) {
-            List<BookProjection> books = libraryService.findBooksByRequestParams(title, author, genre);
+            List<BookProjection> books = bookService.findBooksByRequestParameters(title, author, genre);
             model.addAttribute("books", books);
         }
         return "result_book";
@@ -44,7 +44,7 @@ public class LibraryController {
     @GetMapping(value = "/library/books/search/quick")
     public String quickSearch(@RequestParam(required = false) String title, final Model model) {
         if (!title.isBlank()) {
-            List<BookProjection> books = libraryService.findBooksByRequestParams(title, "", "");
+            List<BookProjection> books = bookService.findBooksByRequestParameters(title, "", "");
             model.addAttribute("books", books);
         }
         return "result_book";

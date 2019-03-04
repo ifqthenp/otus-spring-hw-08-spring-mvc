@@ -1,6 +1,7 @@
 package com.otus.hw_08.controllers;
 
-import com.otus.hw_08.services.LibraryService;
+import com.otus.hw_08.services.AuthorService;
+import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,12 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 @RequiredArgsConstructor
 public class HomeController {
 
-    private final LibraryService libraryService;
+    private final BookService bookService;
+    private final AuthorService authorService;
 
     @GetMapping("/home")
     public String index(final Model model) {
-        model.addAttribute("booksTotal", libraryService.getBooksCount());
-        model.addAttribute("authorsTotal", libraryService.getAuthorsCount());
+        model.addAttribute("booksTotal", bookService.getCount());
+        model.addAttribute("authorsTotal", authorService.getCount());
         return "index";
     }
 

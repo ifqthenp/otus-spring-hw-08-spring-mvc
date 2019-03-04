@@ -25,7 +25,7 @@ public class LibraryController {
 
     @GetMapping(value = "/library/books/search")
     public String bookSearchForm() {
-        return "find_book";
+        return "book_search_form";
     }
 
     @GetMapping(value = "/library/books/search/full")
@@ -38,7 +38,7 @@ public class LibraryController {
             List<BookProjection> books = bookService.findBooksByRequestParameters(title, author, genre);
             model.addAttribute("books", books);
         }
-        return "result_book";
+        return "book_search_result";
     }
 
     @GetMapping(value = "/library/books/search/quick")
@@ -47,7 +47,7 @@ public class LibraryController {
             List<BookProjection> books = bookService.findBooksByRequestParameters(title, "", "");
             model.addAttribute("books", books);
         }
-        return "result_book";
+        return "book_search_result";
     }
 
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {

@@ -20,7 +20,7 @@ public class LibraryController {
 
     @GetMapping("/library/add")
     public String add() {
-        return "add_book";
+        return "book_add_new";
     }
 
     @GetMapping(value = "/library/books/search")

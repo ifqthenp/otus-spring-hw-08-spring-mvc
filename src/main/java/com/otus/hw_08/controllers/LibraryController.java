@@ -24,7 +24,7 @@ public class LibraryController {
     }
 
     @GetMapping(value = "/library/books/search")
-    public String findBook() {
+    public String bookSearchForm() {
         return "find_book";
     }
 

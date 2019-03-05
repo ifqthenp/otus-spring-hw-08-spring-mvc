@@ -3,6 +3,8 @@ package com.otus.hw_08.domain;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
@@ -17,9 +19,14 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @NotBlank
     @Column(name = "title")
     private String title;
 
+    @Pattern(
+        regexp = "\\d{4}",
+        message = "Invalid year format. Must be 4 digits"
+    )
     @Column(name = "written")
     private String year;
 

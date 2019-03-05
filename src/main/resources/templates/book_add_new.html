@@ -13,6 +13,33 @@
             <h3>Please use this form to add a book to the library</h3>
         </div>
     </div>
+    <div class="row mt-4">
+        <div class="col">
+            <form action="#" th:action="@{/library/books/add}" method="post">
+                <div class="form-group">
+                    <label for="inputBookTitle">Enter book title</label>
+                    <input type="text" th:field="${book.title}" class="form-control" id="inputBookTitle">
+                </div>
+                <div class="form-group">
+                    <label for="inputAuthorFirstName">Enter author's first name</label>
+                    <input type="text" th:field="${author.firstName}" class="form-control" id="inputAuthorFirstName">
+                </div>
+                <div class="form-group">
+                    <label for="inputAuthorLastName">Enter author's last name</label>
+                    <input type="text" th:field="${author.lastName}" class="form-control" id="inputAuthorLastName">
+                </div>
+                <div class="form-group">
+                    <label for="inputGenre">Enter genre</label>
+                    <input type="text" th:field="${genre.genreName}" class="form-control" id="inputGenre">
+                </div>
+                <div class="form-group">
+                    <label for="inputYear">Enter year</label>
+                    <input type="text" th:field="${book.year}" class="form-control" id="inputYear">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
 </div>
 
 <div th:replace="~{fragments/scripts::common-scripts}"></div>

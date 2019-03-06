@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -29,14 +28,12 @@ public class LibraryController {
 
     @PostMapping("/library/books/add")
     public String bookAdd(@Valid @ModelAttribute("bookAddForm") final BookAddForm bookForm,
-                          final BindingResult result,
-                          final SessionStatus sessionStatus) {
+                          final BindingResult result) {
         if (result.hasErrors()) {
             log.debug("{}", result);
             return "book_add_new";
         }
         bookService.saveFormAsBook(bookForm);
-        sessionStatus.setComplete();
         return "redirect:/library/books/add";
     }
 

@@ -7,16 +7,16 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
 @Controller
+@SessionAttributes("book_add")
 @RequiredArgsConstructor
 public class LibraryController {
 
@@ -27,7 +27,17 @@ public class LibraryController {
         return "book_add_new";
     }
 
-        return "book_add_new";
+    @PostMapping("/library/books/add")
+    public String bookAdd(@Valid @ModelAttribute("bookAddForm") final BookAddForm bookForm,
+                          final BindingResult result,
+                          final SessionStatus sessionStatus) {
+        if (result.hasErrors()) {
+            log.debug("{}", result);
+            return "book_add_new";
+        }
+        bookService.saveFormAsBook(bookForm);
+        sessionStatus.setComplete();
+        return "redirect:/library/books/add";
     }
 
     @GetMapping(value = "/library/books/search")

@@ -33,7 +33,7 @@ public class LibraryController {
             return "book_add_new";
         }
         bookService.saveFormAsBook(bookForm);
-        return "redirect:/library/books/add";
+        return "redirect:/home";
     }
 
     @GetMapping(value = "/library/books/search")

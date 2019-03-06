@@ -1,8 +1,5 @@
 package com.otus.hw_08.controllers;
 
-import com.otus.hw_08.domain.Author;
-import com.otus.hw_08.domain.Book;
-import com.otus.hw_08.domain.Genre;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -59,19 +56,6 @@ public class LibraryController {
         return "book_search_result";
     }
 
-    @ModelAttribute("book")
-    public Book getBook() {
-        return new Book();
-    }
-
-    @ModelAttribute("author")
-    public Author getAuthor() {
-        return new Author();
-    }
-
-    @ModelAttribute("genre")
-    public Genre getGenre() {
-        return new Genre();
     }
 
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {

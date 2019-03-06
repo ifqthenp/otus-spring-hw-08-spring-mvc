@@ -1,5 +1,8 @@
 package com.otus.hw_08.controllers;
 
+import com.otus.hw_08.domain.Author;
+import com.otus.hw_08.domain.Book;
+import com.otus.hw_08.domain.Genre;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -7,8 +10,11 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Slf4j
@@ -18,8 +24,11 @@ public class LibraryController {
 
     private final BookService bookService;
 
-    @GetMapping("/library/add")
-    public String bookAdd() {
+    @GetMapping("/library/books/add")
+    public String bookAdd(final Model model) {
+        return "book_add_new";
+    }
+
         return "book_add_new";
     }
 
@@ -48,6 +57,21 @@ public class LibraryController {
             model.addAttribute("books", books);
         }
         return "book_search_result";
+    }
+
+    @ModelAttribute("book")
+    public Book getBook() {
+        return new Book();
+    }
+
+    @ModelAttribute("author")
+    public Author getAuthor() {
+        return new Author();
+    }
+
+    @ModelAttribute("genre")
+    public Genre getGenre() {
+        return new Genre();
     }
 
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {

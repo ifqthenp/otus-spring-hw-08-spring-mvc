@@ -8,7 +8,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -55,7 +58,7 @@ public class LibraryController {
     }
 
     @GetMapping(value = "/library/books/search/quick")
-    public String quickSearch(@RequestParam(required = false) String title, final Model model) {
+    public String quickSearch(final Model model, @RequestParam(required = false) final String title) {
         if (!title.isBlank()) {
             List<BookProjection> books = bookService.findBooksByRequestParameters(title, "", "");
             model.addAttribute("books", books);

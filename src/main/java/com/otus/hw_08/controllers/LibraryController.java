@@ -15,7 +15,6 @@ import java.util.List;
 
 @Slf4j
 @Controller
-@SessionAttributes("book_add")
 @RequiredArgsConstructor
 public class LibraryController {
 

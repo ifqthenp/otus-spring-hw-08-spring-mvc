@@ -4,14 +4,14 @@ import com.otus.hw_08.controllers.forms.BookAddForm;
 import com.otus.hw_08.domain.Author;
 import com.otus.hw_08.domain.Book;
 import com.otus.hw_08.domain.Genre;
-import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.repository.BookRepository;
+import com.otus.hw_08.repository.projections.BookProjection;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class BookService {
 

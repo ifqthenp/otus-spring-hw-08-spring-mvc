@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/ifqthenp/otus-spring-hw-08-spring-mvc.svg?branch=hw-08-sol-01)](https://travis-ci.org/ifqthenp/otus-spring-hw-08-spring-mvc)
+[![Build Status](https://travis-ci.org/ifqthenp/otus-spring-hw-08-spring-mvc.svg?branch=master)](https://travis-ci.org/ifqthenp/otus-spring-hw-08-spring-mvc)
 
 # Spring Framework Developer Course
 

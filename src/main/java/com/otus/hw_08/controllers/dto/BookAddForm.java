@@ -1,4 +1,4 @@
-package com.otus.hw_08.controllers.forms;
+package com.otus.hw_08.controllers.dto;
 
 import lombok.Data;
 

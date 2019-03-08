@@ -1,6 +1,6 @@
 package com.otus.hw_08.controllers;
 
-import com.otus.hw_08.controllers.forms.BookAddForm;
+import com.otus.hw_08.controllers.dto.BookAddForm;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;

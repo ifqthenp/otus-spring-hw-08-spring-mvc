@@ -1,6 +1,6 @@
 package com.otus.hw_08.services;
 
-import com.otus.hw_08.controllers.forms.BookAddForm;
+import com.otus.hw_08.controllers.dto.BookAddForm;
 import com.otus.hw_08.domain.Author;
 import com.otus.hw_08.domain.Book;
 import com.otus.hw_08.domain.Genre;

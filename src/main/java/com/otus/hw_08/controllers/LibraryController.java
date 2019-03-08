@@ -60,7 +60,7 @@ public class LibraryController {
     @GetMapping(value = "/library/books/search/quick")
     public String quickSearch(final Model model, @RequestParam(required = false) final String title) {
         if (!title.isBlank()) {
-            List<BookProjection> books = bookService.findBooksByRequestParameters(title, "", "");
+            List<BookProjection> books = bookService.findBooksByTitleRequestParam(title);
             model.addAttribute("books", books);
         }
         return "book_search_result";

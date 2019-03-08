@@ -25,6 +25,10 @@ public class BookService {
         return bookRepository.findBooksByRequestParameters(title, author, genre);
     }
 
+    public List<BookProjection> findBooksByTitleRequestParam(final String title) {
+        return bookRepository.findBooksByTitle(title);
+    }
+
     public Book saveBook(final Book book) {
         return bookRepository.save(book);
 

@@ -29,7 +29,7 @@ public class LibraryController {
     }
 
     @PostMapping("/library/books/add")
-    public String bookAdd(@Valid @ModelAttribute("bookDto") final BookDto bookForm,
+    public String bookAdd(@Valid @ModelAttribute("bookDto") final BookDto bookDto,
                           final BindingResult result) {
         if (result.hasErrors()) {
             log.debug("{}", result);

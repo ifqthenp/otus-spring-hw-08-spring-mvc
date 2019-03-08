@@ -2,9 +2,9 @@ package com.otus.hw_08.services;
 
 import com.otus.hw_08.repository.AuthorRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class AuthorService {
 

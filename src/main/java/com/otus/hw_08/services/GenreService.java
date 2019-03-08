@@ -3,11 +3,11 @@ package com.otus.hw_08.services;
 import com.otus.hw_08.domain.Genre;
 import com.otus.hw_08.repository.GenreRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-@Component
+@Service
 @RequiredArgsConstructor
 public class GenreService {
 

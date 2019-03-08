@@ -1,6 +1,7 @@
 package com.otus.hw_08.controllers;
 
-import com.otus.hw_08.controllers.forms.BookAddForm;
+import com.otus.hw_08.controllers.dto.BookDto;
+import com.otus.hw_08.domain.Book;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -29,13 +30,14 @@ public class LibraryController {
     }
 
     @PostMapping("/library/books/add")
-    public String bookAdd(@Valid @ModelAttribute("bookAddForm") final BookAddForm bookForm,
+    public String bookAdd(@Valid @ModelAttribute("bookDto") final BookDto bookDto,
                           final BindingResult result) {
         if (result.hasErrors()) {
             log.debug("{}", result);
             return "book_add_new";
         }
-        bookService.saveFormAsBook(bookForm);
+        final Book book = bookDto.toEntity(bookDto);
+        bookService.saveBook(book);
         return "redirect:/home";
     }
 
@@ -60,15 +62,15 @@ public class LibraryController {
     @GetMapping(value = "/library/books/search/quick")
     public String quickSearch(final Model model, @RequestParam(required = false) final String title) {
         if (!title.isBlank()) {
-            List<BookProjection> books = bookService.findBooksByRequestParameters(title, "", "");
+            List<BookProjection> books = bookService.findBooksByTitleRequestParam(title);
             model.addAttribute("books", books);
         }
         return "book_search_result";
     }
 
-    @ModelAttribute("bookAddForm")
-    public BookAddForm getBookAddForm() {
-        return new BookAddForm();
+    @ModelAttribute("bookDto")
+    public BookDto getBookDto() {
+        return new BookDto();
     }
 
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {

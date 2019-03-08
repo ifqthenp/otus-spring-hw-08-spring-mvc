@@ -1,6 +1,6 @@
 package com.otus.hw_08.services;
 
-import com.otus.hw_08.controllers.dto.BookAddForm;
+import com.otus.hw_08.controllers.dto.BookDto;
 import com.otus.hw_08.domain.Author;
 import com.otus.hw_08.domain.Book;
 import com.otus.hw_08.domain.Genre;
@@ -34,7 +34,7 @@ public class BookService {
 
     }
 
-    public Book saveFormAsBook(final BookAddForm bookForm) {
+    public Book saveFormAsBook(final BookDto bookForm) {
         final Author author = new Author();
         author.setFirstName(bookForm.getFirstName());
         author.setLastName(bookForm.getLastName());

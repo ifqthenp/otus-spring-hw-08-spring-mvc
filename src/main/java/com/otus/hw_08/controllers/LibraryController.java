@@ -1,6 +1,6 @@
 package com.otus.hw_08.controllers;
 
-import com.otus.hw_08.controllers.dto.BookAddForm;
+import com.otus.hw_08.controllers.dto.BookDto;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -29,7 +29,7 @@ public class LibraryController {
     }
 
     @PostMapping("/library/books/add")
-    public String bookAdd(@Valid @ModelAttribute("bookAddForm") final BookAddForm bookForm,
+    public String bookAdd(@Valid @ModelAttribute("bookDto") final BookDto bookForm,
                           final BindingResult result) {
         if (result.hasErrors()) {
             log.debug("{}", result);
@@ -66,9 +66,9 @@ public class LibraryController {
         return "book_search_result";
     }
 
-    @ModelAttribute("bookAddForm")
-    public BookAddForm getBookAddForm() {
-        return new BookAddForm();
+    @ModelAttribute("bookDto")
+    public BookDto getBookAddForm() {
+        return new BookDto();
     }
 
     private boolean allParamsNotBlank(final String title, final String author, final String genre) {

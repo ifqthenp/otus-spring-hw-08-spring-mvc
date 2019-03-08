@@ -6,7 +6,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
 @Data
-public class BookAddForm {
+public class BookDto {
 
     @NotBlank
     private String title;

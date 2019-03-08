@@ -1,9 +1,6 @@
 package com.otus.hw_08.services;
 
-import com.otus.hw_08.controllers.dto.BookDto;
-import com.otus.hw_08.domain.Author;
 import com.otus.hw_08.domain.Book;
-import com.otus.hw_08.domain.Genre;
 import com.otus.hw_08.repository.BookRepository;
 import com.otus.hw_08.repository.projections.BookProjection;
 import lombok.RequiredArgsConstructor;
@@ -31,23 +28,6 @@ public class BookService {
 
     public Book saveBook(final Book book) {
         return bookRepository.save(book);
-
-    }
-
-    public Book saveFormAsBook(final BookDto bookForm) {
-        final Author author = new Author();
-        author.setFirstName(bookForm.getFirstName());
-        author.setLastName(bookForm.getLastName());
-
-        final Genre genre = new Genre();
-        genre.setGenreName(bookForm.getGenre());
-
-        final Book book = new Book();
-        book.setTitle(bookForm.getTitle());
-        book.setYear(bookForm.getYear());
-        book.addAuthor(author);
-        book.addGenre(genre);
-        return bookRepository.saveAndFlush(book);
     }
 
 }

@@ -1,6 +1,7 @@
 package com.otus.hw_08.controllers;
 
 import com.otus.hw_08.controllers.dto.BookDto;
+import com.otus.hw_08.domain.Book;
 import com.otus.hw_08.repository.projections.BookProjection;
 import com.otus.hw_08.services.BookService;
 import lombok.RequiredArgsConstructor;
@@ -35,7 +36,8 @@ public class LibraryController {
             log.debug("{}", result);
             return "book_add_new";
         }
-        bookService.saveFormAsBook(bookForm);
+        final Book book = bookDto.toEntity(bookDto);
+        bookService.saveBook(book);
         return "redirect:/home";
     }
 
